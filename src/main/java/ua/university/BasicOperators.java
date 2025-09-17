@@ -26,7 +26,7 @@ public class BasicOperators {
     }
 
     /**
-     * Returns the corresponding grade letter for a given numeric score.
+     * Returns the corresponding grade letter for a given numeric score
      */
     public static char gradeFromScore(int score) {
         if (score < 0 || score > 100) {
