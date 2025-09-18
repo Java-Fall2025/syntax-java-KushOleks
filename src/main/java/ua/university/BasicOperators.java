@@ -4,30 +4,16 @@ import java.util.Arrays;
 
 public class BasicOperators {
 
-    /**
-     * Returns the sum and average of three integers.
-     *
-     * @param a first integer
-     * @param b second integer
-     * @param c third integer
-     * @return double array where [0] = sum, [1] = average
-     */
     public static double[] sumAndAverage(int a, int b, int c) {
         int sum = a + b + c;
         double avg = sum / 3.0;
         return new double[]{sum, avg};
     }
 
-    /**
-     * Returns the maximum of three integers.
-     */
     public static int maxOfThree(int a, int b, int c) {
         return Math.max(a, Math.max(b, c));
     }
 
-    /**
-     * Returns the corresponding grade letter for a given numeric score
-     */
     public static char gradeFromScore(int score) {
         if (score < 0 || score > 100) {
             throw new IllegalArgumentException("Score must be between 0 and 100");
@@ -40,9 +26,6 @@ public class BasicOperators {
         return 'F';
     }
 
-    /**
-     * Returns the day of the week name for a number 1-7.
-     */
     public static String dayOfWeek(int day) {
         return switch (day) {
             case 1 -> "Monday";
@@ -56,10 +39,8 @@ public class BasicOperators {
         };
     }
 
-    /**
-     * Returns an array counting down from n to 1.
-     */
     public static int[] countdown(int n) {
+        if (n < 0) throw new IllegalArgumentException("n must be non-negative");
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = n - i;
@@ -67,9 +48,6 @@ public class BasicOperators {
         return arr;
     }
 
-    /**
-     * Returns factorial of n.
-     */
     public static long factorial(int n) {
         if (n < 0) throw new IllegalArgumentException("Negative factorial not defined");
         long fact = 1;
@@ -79,10 +57,8 @@ public class BasicOperators {
         return fact;
     }
 
-    /**
-     * Returns a reversed copy of the array.
-     */
     public static int[] reverseArray(int[] arr) {
+        if (arr == null) throw new IllegalArgumentException("Array cannot be null");
         int[] res = Arrays.copyOf(arr, arr.length);
         for (int i = 0, j = res.length - 1; i < j; i++, j--) {
             int tmp = res[i];
@@ -92,37 +68,33 @@ public class BasicOperators {
         return res;
     }
 
-    /**
-     * Returns sum of all elements in a 2D array (matrix).
-     */
     public static int sumMatrix(int[][] matrix) {
+        if (matrix == null) throw new IllegalArgumentException("Matrix cannot be null");
         int sum = 0;
         for (int[] row : matrix) {
-            for (int val : row) {
-                sum += val;
+            if (row != null) {
+                for (int val : row) {
+                    sum += val;
+                }
             }
         }
         return sum;
     }
 
-    /**
-     * Checks if a string is a palindrome.
-     */
     public static boolean isPalindrome(String s) {
+        if (s == null) throw new IllegalArgumentException("String cannot be null");
         String cleaned = s.replaceAll("\\s+", "").toLowerCase();
         int i = 0, j = cleaned.length() - 1;
         while (i < j) {
             if (cleaned.charAt(i) != cleaned.charAt(j)) return false;
-            i++; j--;
+            i++;
+            j--;
         }
         return true;
     }
 
-    /**
-     * Returns minimum and maximum of an array.
-     */
     public static int[] findMinMax(int[] arr) {
-        if (arr.length == 0) throw new IllegalArgumentException("Array empty");
+        if (arr == null || arr.length == 0) throw new IllegalArgumentException("Array is null or empty");
         int min = arr[0], max = arr[0];
         for (int val : arr) {
             if (val < min) min = val;
@@ -131,10 +103,8 @@ public class BasicOperators {
         return new int[]{min, max};
     }
 
-    /**
-     * Returns multiplication table n x n.
-     */
     public static int[][] multiplicationTable(int n) {
+        if (n <= 0) throw new IllegalArgumentException("n must be positive");
         int[][] table = new int[n][n];
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
@@ -144,10 +114,8 @@ public class BasicOperators {
         return table;
     }
 
-    /**
-     * Returns all even numbers up to n.
-     */
     public static int[] evenNumbersUpToN(int n) {
+        if (n < 0) throw new IllegalArgumentException("n must be non-negative");
         int size = n / 2;
         int[] res = new int[size];
         for (int i = 0; i < size; i++) {
@@ -156,9 +124,6 @@ public class BasicOperators {
         return res;
     }
 
-    /**
-     * Checks if a number is prime.
-     */
     public static boolean isPrime(int n) {
         if (n <= 1) return false;
         if (n <= 3) return true;
@@ -169,10 +134,8 @@ public class BasicOperators {
         return true;
     }
 
-    /**
-     * Counts vowels in a string.
-     */
     public static int countVowels(String s) {
+        if (s == null) throw new IllegalArgumentException("String cannot be null");
         int count = 0;
         String lower = s.toLowerCase();
         for (char c : lower.toCharArray()) {
@@ -181,11 +144,9 @@ public class BasicOperators {
         return count;
     }
 
-    /**
-     * Returns first n Fibonacci numbers.
-     */
     public static int[] fibonacci(int n) {
-        if (n <= 0) return new int[0];
+        if (n < 0) throw new IllegalArgumentException("n must be non-negative");
+        if (n == 0) return new int[0];
         int[] fib = new int[n];
         fib[0] = 0;
         if (n > 1) fib[1] = 1;
@@ -195,10 +156,8 @@ public class BasicOperators {
         return fib;
     }
 
-    /**
-     * Returns the transpose of a 2D array (matrix).
-     */
     public static int[][] transpose(int[][] matrix) {
+        if (matrix == null) throw new IllegalArgumentException("Matrix cannot be null");
         int rows = matrix.length;
         int cols = matrix[0].length;
         int[][] trans = new int[cols][rows];
@@ -210,10 +169,8 @@ public class BasicOperators {
         return trans;
     }
 
-    /**
-     * Returns a sorted copy of the array in ascending order.
-     */
     public static int[] sortArray(int[] arr) {
+        if (arr == null) throw new IllegalArgumentException("Array cannot be null");
         int[] res = Arrays.copyOf(arr, arr.length);
         Arrays.sort(res);
         return res;
